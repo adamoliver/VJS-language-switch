@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>HTML5 Video Player</title>
+
+    <!-- Base Player -->
+    <link href="video-js.min.css" rel="stylesheet" />
+    <script src="video.dev.js"></script>
+
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">  
+
+    <!-- Plugins -->
+    <link href="videojs.menu.css" rel="stylesheet" />
+    <script src="videojs.menu.js"></script>
+</head>
+<body>
+
+    <video id="vid1" controls preload="none" poster="http://www.videojs.com/img/poster.jpg" class="video-js vjs-default-skin" >
+        <source src="http://cdn-film-http.twig-world.com/TWG00160/2012-11-30/h264-800/74e56cb85c18ab8ebadba95f06b5e8b3.mp4" type="video/mp4">
+        <source src="http://cdn-film-http.twig-world.com/TWG00160/2012-11-30/WebM-800/5b3265a2e916590079f8405919c8a281.webm" type="video/webm">
+        <track kind="captions" src="demo.captions.vtt" srclang="en" label="English"></track>
+    </video>
+
+    <script>
+        videojs("vid1", {
+                    techOrder: ["html5", "flash"],
+                    height: 267,
+                    width: 640,
+                    plugins: {
+                        languageSwitch: {
+                            languages: [
+                                {
+                                    label: 'English',
+                                    videos: [
+                                        {
+                                            type: 'video/mp4',
+                                            src: 'http://cdn-film-http.twig-world.com/TWG00160/2012-11-30/h264-800/74e56cb85c18ab8ebadba95f06b5e8b3.mp4'
+                                        },
+                                        {
+                                            type: 'video/webm',
+                                            src: 'http://cdn-film-http.twig-world.com/TWG00160/2012-11-30/WebM-800/5b3265a2e916590079f8405919c8a281.webm'
+                                        }
+                                    ]
+                                },
+                                {
+                                    label: 'Spanish',
+                                    videos: [
+                                        {
+                                            type: 'video/mp4',
+                                            src: 'http://twig-video-europe.s3.amazonaws.com/ESTWG00160/2012-03-14/h264-800/612da67ee1fa2ad5d6416636145eb4ba.mp4'
+                                        },
+                                        {
+                                            type: 'video/webm',
+                                            src: 'http://twig-video-europe.s3.amazonaws.com/ESTWG00160/2012-03-14/WebM-800/af21fbec2a91641c26210e235ac6063c.webm'
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+            }, function(){
+            // Player (this) is initialized and ready.
+        });
+    </script>
+</body>
+</html>

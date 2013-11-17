@@ -1,0 +1,5 @@
+.video-js .vjs-control[class^="icon-"]:before,
+.video-js .vjs-control[class*=" icon-"]:before {
+    font-family:'FontAwesome';
+    content: "\f0ac";
+}
