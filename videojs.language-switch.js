@@ -9,22 +9,22 @@
      * LanguageSwitch Item
      ***********************************************/
     videojs.LanguageSwitchItem = videojs.MenuItem.extend({
-            init: function(player, options){
-                    videojs.MenuItem.call(this, player, options);
-            }
+        init: function(player, options){
+            videojs.MenuItem.call(this, player, options);
+        }
     });
 
     videojs.LanguageSwitchItem.prototype.createEl = function(type, props) {
-            return vjs.Button.prototype.createEl.call(this, 'li', vjs.obj.merge({
-                    className: 'vjs-menu-item',
-                    innerHTML: this.options_['label']
-            }, props));
+        return vjs.Button.prototype.createEl.call(this, 'li', vjs.obj.merge({
+            className: 'vjs-menu-item',
+            innerHTML: this.options_['label']
+        }, props));
     };
 
     videojs.LanguageSwitchItem.prototype.onClick = function() {
-            this.player_.pause();
-            this.player_.src(this.options().videos);
-            this.player_.play();
+        this.player_.pause();
+        this.player_.src(this.options().videos);
+        this.player_.play();
     };
 
 
@@ -33,26 +33,29 @@
      ***********************************************/
     videojs.LanguageSwitch = videojs.MenuButton.extend({
         init: function(player, options){
-                    videojs.MenuButton.call(this, player, options);
+            videojs.MenuButton.call(this, player, options);
 
-                    this.on('click', this.onClick);
+            if (this.items.length <= 1) {
+                this.hide();
+            }
+            this.on('click', this.onClick);
         }
     });
 
     videojs.LanguageSwitch.prototype.onClick = function() {};
     
     videojs.LanguageSwitch.prototype.createItems = function() {
-            var items = [];
-            var languages = this.options().languages;
+        var items = [];
+        var languages = this.options().languages;
 
-            for (var i=0; i<languages.length; i++){
-                    items.push(new videojs.LanguageSwitchItem(this.player_, {
-                            'label': languages[i].label,
-                            'videos': languages[i].videos,
-                    }));
-            }
+        for (var i=0; i<languages.length; i++){
+                items.push(new videojs.LanguageSwitchItem(this.player_, {
+                        'label': languages[i].label,
+                        'videos': languages[i].videos,
+                }));
+        }
 
-            return items;
+        return items;
     };
 
     // Note that we're not doing this in prototype.createEl() because
